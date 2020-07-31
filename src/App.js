@@ -8,6 +8,7 @@ import {
 // Components
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
+import ProjectDetails from './components/projects/ProjectDetails';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route path='/' component={Dashboard}/>
+          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/project/:id' component={ProjectDetails}/>
         </Switch>
       </div>
     </Router>
