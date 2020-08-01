@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Components
 import SignedInLinks from './SignedInLinks';
-import SignedOutLinks from './SignedOutLinks';
+import SignedUpLinks from './SignedUpLinks';
 
 const Navbar = () => {
     return (
@@ -11,7 +11,7 @@ const Navbar = () => {
             <div className="container">
                 <Link to='/' className="brand-logo"> Social Projects </Link>
                 <SignedInLinks />
-                <SignedOutLinks />
+                <SignedUpLinks />
             </div>
         </nav>
     )
