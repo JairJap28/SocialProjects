@@ -1,5 +1,6 @@
 import {
-    ADD_PROJECT
+    CREATE_PROJECT,
+    CREATE_PROJECT_ERROR
 } from '../types';
 
 const initState = {
@@ -12,7 +13,7 @@ const initState = {
 
 const projectReducer = (state = initState, action) => {
     switch (action.type) {
-        case ADD_PROJECT:
+        case CREATE_PROJECT:
             let maxId = Math.max.apply(Math, state.projects.map(project => project.id));
             let newProject = {
                 id: maxId + 1,
@@ -22,6 +23,9 @@ const projectReducer = (state = initState, action) => {
                 ...state,
                 projects: [...state.projects, newProject]
             };
+        case CREATE_PROJECT_ERROR:
+            console.log('Create Project Error', action.err);
+            return state;
         default: return state;
     }
 }
