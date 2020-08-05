@@ -17,7 +17,7 @@ class Dashboard extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <ProjectList projects={projects}/>
+                        <ProjectList projects={projects || []}/>
                     </div>
                     <div className="col s12 m5 offset-m1">
                         <Notifications />
@@ -29,7 +29,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    projects: state.project.projects
+    projects: state.firestore.ordered.projects
 })
 
 export default compose(
