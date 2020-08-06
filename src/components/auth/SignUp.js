@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-// Redux
-import { connect } from 'react-redux';
-import { signIn } from '../../redux/actions/authActions';
-
-class SignIn extends Component {
+class SignUp extends Component {
     state = {
+        firstName: '',
+        lastName: '',
         email: '',
         password: ''
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.signIn(this.state);
+        console.log(this.state);
     }
 
     handleChange = (event) => {
@@ -23,12 +21,11 @@ class SignIn extends Component {
     }
 
     render() {
-        const { authError } = this.props;
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="grey-text text-darken-3">
-                        Sign In
+                        Sign Up
                     </h5>
                     <div className="input-field">
                         <label htmlFor="email"> Email </label>
@@ -39,12 +36,17 @@ class SignIn extends Component {
                         <input type="password" id="password" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
+                        <label htmlFor="firstName"> First Name </label>
+                        <input type="text" id="firstName" onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="lastName"> Last Name </label>
+                        <input type="text" id="lastName" onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">
-                            Login
+                            Sign Up
                         </button>
-                        <div className="red-text center">
-                            {authError ? <p>{authError}</p> : null }
-                        </div>
                     </div>
                 </form>
             </div>
@@ -52,8 +54,4 @@ class SignIn extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    authError: state.auth.authError
-});
-
-export default connect(mapStateToProps, { signIn })(SignIn);
+export default SignUp

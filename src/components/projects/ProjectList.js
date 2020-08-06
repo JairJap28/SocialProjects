@@ -1,31 +1,24 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const ProjectList = () => {
+// Components
+import ProjectSummary from './ProjectSummary'
+
+const ProjectList = ({ projects }) => {
     return (
         <div className="project-list section">
-            <div className="card z-depth-0 project-summary">
-                <div className="card-content grey-text text-darken-3">
-                    <span className="card-title">Project Title</span>
-                    <p>Posted by JairJap</p>
-                    <p className="grey-text">3rd September, 9pm</p>
-                </div>
-            </div>
-            <div className="card z-depth-0 project-summary">
-                <div className="card-content grey-text text-darken-3">
-                    <span className="card-title">Project Title</span>
-                    <p>Posted by JairJap</p>
-                    <p className="grey-text">3rd September, 9pm</p>
-                </div>
-            </div>
-            <div className="card z-depth-0 project-summary">
-                <div className="card-content grey-text text-darken-3">
-                    <span className="card-title">Project Title</span>
-                    <p>Posted by JairJap</p>
-                    <p className="grey-text">3rd September, 9pm</p>
-                </div>
-            </div>
+            {projects && projects.map(project => (
+                <Link key={project.id} to={`/project/${project.id}`}>
+                    <ProjectSummary project={project}/>
+                </Link>
+            ))}
         </div>
     )
+}
+
+ProjectList.propTypes = {
+    projects: PropTypes.array.isRequired
 }
 
 export default ProjectList;
