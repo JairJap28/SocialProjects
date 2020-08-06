@@ -13,6 +13,7 @@ import {
     createFirestoreInstance
 } from 'redux-firestore';
 import {
+    firebaseReducer,
     getFirebase
 } from 'react-redux-firebase';
 
@@ -27,7 +28,8 @@ import firebase from 'firebase/app';
 const rootReducer = combineReducers({
     auth: authReducer,
     project: projectReducer,
-    firestore: firestoreReducer
+    firestore: firestoreReducer,
+    firebase: firebaseReducer
 });
 
 const store = createStore(
