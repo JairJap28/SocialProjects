@@ -1,0 +1,10 @@
+.fullSize {
+    height: 100%;
+    width: 100%;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}

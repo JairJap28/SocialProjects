@@ -1,6 +1,7 @@
 import {
     LOGIN_SUCCESS,
-    LOGIN_ERROR
+    LOGIN_ERROR,
+    SIGNOUT_SUCCESS
 } from '../types';
 
 const initState = {
@@ -8,7 +9,6 @@ const initState = {
 }
 
 const authReducer = (state = initState, action) => {
-    console.log(action);
     switch(action.type) {
         case LOGIN_ERROR:
             const error = action.err.code === 'auth/user-not-found'
@@ -22,7 +22,9 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 authError: null
-            }
+            };
+        case SIGNOUT_SUCCESS:
+            return state;
         default: return state;
     }
 }
