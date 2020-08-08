@@ -9,8 +9,8 @@ import SignedInLinks from './SignedInLinks';
 import SignedUpLinks from './SignedUpLinks';
 
 const Navbar = (props) => {
-    const { auth } = props;
-    const links = auth.uid ? <SignedInLinks /> : <SignedUpLinks />;
+    const { auth, profile } = props;
+    const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedUpLinks />;
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
@@ -22,7 +22,8 @@ const Navbar = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
 });
 
 export default connect(mapStateToProps)(Navbar);
