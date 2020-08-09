@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+
+// MUI Stuff
+import Button from '@material-ui/core/Button';
 
 const SignedUpLinks = () => {
     return (
-        <ul className="right">
-            <li><NavLink to="/signup">Sign Up</NavLink></li>
-            <li><NavLink to="/signin">Log In</NavLink></li>
-        </ul>
+        <Fragment>
+            <Button color="inherit" component={NavLink} to="/signup">Sign Up</Button>
+            <Button color="inherit" component={NavLink} to="/signin">Log In</Button>
+        </Fragment>
     )
 }
 
