@@ -39,10 +39,11 @@ const theme = createMuiTheme({
             contrastText: 'rgba(0, 0, 0, 0.87)'
         },
         character: {
+            hair: '#000',
             skin: '#ffe0b2',
             shirt: '#000',
-            pants: '#2196f3',
-            pantsUp: '#1565c0',
+            pants: '#00897b',
+            pantsUp: '#005f56',
             circleOne: '#ffeb3b',
             circleTwo: '#2196f3',
             circleThree: '#f44336'

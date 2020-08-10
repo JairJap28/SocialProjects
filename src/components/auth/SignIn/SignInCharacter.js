@@ -6,7 +6,10 @@ const SignInCharacter = () => {
     return (
         <div className={classes.mainContainer}>
             <div className={classes.head}>
-
+                <div className={classes.hair}>
+                    <div className={classes.hairUp} />
+                    <div className={classes.hairMedium}/>
+                </div>
             </div>
             <div className={classes.neck}/>
             <div className={classes.body}>
@@ -19,7 +22,13 @@ const SignInCharacter = () => {
                 </div>
                 <div className={classes.pants}>
                     <div className={classes.pantLeft} />
-                    <div className={classes.pantRight}/>
+                    <div className={`${classes.pocket} ${classes.pocketRotateRight}`}>
+                        <div className={classes.insidePocket}/>
+                    </div>
+                    <div className={classes.pantRight} />
+                    <div className={`${classes.pocket} ${classes.pocketRotateLeft}`}>
+                        <div className={classes.insidePocket}/>
+                    </div>
                 </div>
             </div>
         </div>
