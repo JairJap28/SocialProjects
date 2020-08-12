@@ -41,11 +41,14 @@ const theme = createMuiTheme({
         character: {
             hair: '#000',
             skin: '#ffe0b2',
+            skinDark: '#cbae82',
             shirt: '#000',
             pants: '#00897b',
             pantsUp: '#005f56',
+            shoes: '#B72F33',
             glasses: '#212121',
             eye: '#3e2723',
+            mouth: '#FF836F',
             circleOne: '#ffeb3b',
             circleTwo: '#2196f3',
             circleThree: '#f44336'

@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
@@ -117,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
         left: 4,
         borderStyle: 'solid',
         borderColor: theme.palette.character.glasses,
-        borderBottomLeftRadius: 5,
+        borderBottomLeftRadius: 7,
         borderBottomRightRadius: 7,
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
@@ -141,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
         borderStyle: 'solid',
         borderColor: theme.palette.character.glasses,
         borderBottomLeftRadius: 7,
-        borderBottomRightRadius: 5,
+        borderBottomRightRadius: 7,
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
         '&::after': {
@@ -162,6 +161,23 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.character.glasses,
             content: '""',
             transform: 'rotate(-30deg)'
+        }
+    },
+    mouth: {
+        width: 15,
+        height: 10,
+        top: 45,
+        left: 27,
+        position: 'absolute',
+        backgroundColor: theme.palette.character.mouth,
+        borderBottomLeftRadius: '50%',
+        borderBottomRightRadius: '50%',
+        '&::before': {
+            width: 15,
+            height: 2,
+            position: 'absolute',
+            backgroundColor: 'white',
+            content: '""'
         }
     },
     body: {
@@ -265,6 +281,104 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.character.skin,
         transform: 'rotate(15deg)'
     },
+    leftArm: {
+        width: 20,
+        height: 10,
+        top: -52,
+        left: -30,
+        position: 'absolute',
+        backgroundColor: theme.palette.character.skin,
+        transform: 'rotate(-40deg)',
+        '&::before': {
+            width: 20,
+            height: 10,
+            top: -9,
+            left: -9,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.skin,
+            transform: 'rotate(-100deg)',
+            content: '""'
+        }
+    },
+    rightHand: {
+        width: 15,
+        height: 15,
+        top: -67,
+        right: 70,
+        position: 'absolute',
+        borderRadius: '40%',
+        backgroundColor: theme.palette.character.skin,
+        '&::before': {
+            width: 5,
+            height: 1,
+            top: 6,
+            left: 10,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.skinDark,
+            transform: 'rotate(10deg)',
+            content: '""'
+        },
+        '&::after': {
+            width: 5,
+            height: 1,
+            top: 11,
+            left: 9,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.skinDark,
+            transform: 'rotate(10deg)',
+            content: '""'
+        }
+    },
+    leftHand: {
+        width: 15,
+        height: 15,
+        top: -65,
+        left: -52,
+        position: 'absolute',
+        borderRadius: '40%',
+        backgroundColor: theme.palette.character.skin,
+        transform: 'rotate(200deg)',
+        '&::before': {
+            width: 5,
+            height: 1,
+            top: 6,
+            left: 10,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.skinDark,
+            transform: 'rotate(10deg)',
+            content: '""'
+        },
+        '&::after': {
+            width: 5,
+            height: 1,
+            top: 11,
+            left: 9,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.skinDark,
+            transform: 'rotate(10deg)',
+            content: '""'
+        }
+    },
+    handThumbFinger: {
+        width: 7,
+        height: 3,
+        top: 15,
+        position: 'absolute',
+        borderBottomRightRadius: 7,
+        backgroundColor: theme.palette.character.skin,
+        transform: 'rotate(90deg)'
+    },
+    handIndexFinger: {
+        width: 10,
+        height: 3,
+        top: 2,
+        right: -7,
+        position: 'absolute',
+        borderTopRightRadius: 7,
+        borderBottomRightRadius: 7,
+        backgroundColor: theme.palette.character.skin,
+        transform: 'rotate(10deg)'
+    },
     pants: {
         width: 70,
         height: 25,
@@ -277,14 +391,16 @@ const useStyles = makeStyles((theme) => ({
             top: 0,
             zIndex: 2,
             backgroundColor: theme.palette.character.pantsUp,
-            content: '""'
+            content: '""',
+            zIndex: 3
         }
     },
     pantLeft: {
         width: 34,
         height: 80,
         position: 'absolute',
-        backgroundColor: theme.palette.character.pants
+        backgroundColor: theme.palette.character.pants,
+        zIndex: 2
     },
     pantRight: {
         width: 34,
@@ -300,6 +416,7 @@ const useStyles = makeStyles((theme) => ({
         height: 27,
         paddingLeft: 5,
         paddingRight: 5,
+        zIndex: 3
     },
     pocketRotateLeft: {
         transform: 'rotate(180deg)',
@@ -317,6 +434,31 @@ const useStyles = makeStyles((theme) => ({
         borderStyle: 'solid',
         borderWidth: 'thin',
         borderColor: theme.palette.character.pantsUp
+    },
+    shoes: {
+        top: 60,
+        position: 'relative',
+    },
+    rightShoe: {
+        width: 40,
+        height: 20,
+        top: -5,
+        left: -10,
+        position: 'absolute',
+        backgroundColor: theme.palette.character.shoes,
+        borderTopLeftRadius: 40,
+        transform: 'rotate(-25deg)',
+        '&::before': {
+            width: 15,
+            height: 12,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 'thin',
+            borderTopRightRadius: 7,
+            borderTopLeftRadius: 7,
+            content: '""'
+        }
     }
 }));
 

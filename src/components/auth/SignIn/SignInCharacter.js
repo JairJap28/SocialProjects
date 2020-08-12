@@ -19,6 +19,7 @@ const SignInCharacter = () => {
                     <div className={classes.leftGlass} />
                     <div className={classes.rightGlass}/>
                 </div>
+                <div className={classes.mouth}/>
             </div>
             <div className={classes.neck}/>
             <div className={classes.body}>
@@ -34,6 +35,12 @@ const SignInCharacter = () => {
                 <div className={classes.arms}>
                     <div className={classes.leftArm} />
                     <div className={classes.rightArm} />
+                    <div className={classes.rightHand}>
+                        <div className={classes.handIndexFinger}/>
+                    </div>
+                    <div className={classes.leftHand}>
+                        <div className={classes.handThumbFinger}/>
+                    </div>
                 </div>
                 <div className={classes.pants}>
                     <div className={classes.pantLeft} />
@@ -44,6 +51,11 @@ const SignInCharacter = () => {
                     <div className={`${classes.pocket} ${classes.pocketRotateLeft}`}>
                         <div className={classes.insidePocket}/>
                     </div>
+                </div>
+            </div>
+            <div className={classes.shoes}>
+                <div className={classes.rightShoe}>
+
                 </div>
             </div>
         </div>
