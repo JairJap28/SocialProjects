@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: `-8px 8px 0 2px ${theme.palette.character.hair}`,
         borderRadius: '50%',
     },
+    hairTop: {
+    },
     hairMedium: {
         width: 3,
         height: 15,
@@ -52,6 +54,115 @@ const useStyles = makeStyles((theme) => ({
         borderTopRightRadius: 15,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25
+    },
+    eyes: {
+        position: 'relative'
+    },
+    eyeLeft: {
+        width: 10,
+        height: 10,
+        top: 22,
+        left: 9,
+        borderStyle: 'solid',
+        borderColor: theme.palette.character.glasses,
+        borderRadius: '75% 15%',
+        borderWidth: 'thin',
+        position: 'absolute',
+        transform: 'rotate(45deg)',
+        backgroundColor: 'white',
+        opacity: '0.4',
+        '&::before': {
+            width: 3,
+            height: 3,
+            top: 3,
+            left: 3,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.eye,
+            borderRadius: '50%',
+            content: '""'
+        }
+    },
+    eyeRight: {
+        width: 10,
+        height: 10,
+        top: 22,
+        right: 8,
+        borderStyle: 'solid',
+        borderColor: theme.palette.character.glasses,
+        borderRadius: '75% 15%',
+        borderWidth: 'thin',
+        position: 'absolute',
+        transform: 'rotate(45deg)',
+        backgroundColor: 'white',
+        opacity: '0.4',
+        '&::before': {
+            width: 3,
+            height: 3,
+            top: 3,
+            left: 3,
+            position: 'absolute',
+            backgroundColor: theme.palette.character.eye,
+            borderRadius: '50%',
+            content: '""'
+        }
+    },
+    glasses: {
+        position: 'absolute',
+    },
+    leftGlass: {
+        width: 20,
+        height: 15,
+        position: 'absolute',
+        top: 20,
+        left: 4,
+        borderStyle: 'solid',
+        borderColor: theme.palette.character.glasses,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 7,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        '&::before': {
+            width: 6,
+            height: 3,
+            position: 'absolute',
+            top: 0,
+            left: -7,
+            backgroundColor: theme.palette.character.glasses,
+            content: '""',
+            transform: 'rotate(30deg)'
+        }
+    },
+    rightGlass: {
+        width: 20,
+        height: 15,
+        position: 'absolute',
+        top: 20,
+        right: -47,
+        borderStyle: 'solid',
+        borderColor: theme.palette.character.glasses,
+        borderBottomLeftRadius: 7,
+        borderBottomRightRadius: 5,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        '&::after': {
+            width: 5,
+            height: 3,
+            position: 'absolute',
+            top: 0,
+            left: -8,
+            backgroundColor: theme.palette.character.glasses,
+            content: '""'
+        },
+        '&::before': {
+            width: 6,
+            height: 3,
+            position: 'absolute',
+            top: 0,
+            right: -7,
+            backgroundColor: theme.palette.character.glasses,
+            content: '""',
+            transform: 'rotate(-30deg)'
+        }
     },
     body: {
 
@@ -120,6 +231,39 @@ const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: 7,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
+    },
+    leftSleeve: {
+        width: 25,
+        height: 45,
+        top: 0,
+        left: -8,
+        position: 'absolute',
+        borderTopLeftRadius: 10,
+        backgroundColor: theme.palette.character.shirt,
+        transform: 'rotate(50deg)',
+    },
+    rightSleeve: {
+        width: 25,
+        height: 35,
+        top: -2,
+        right: -8,
+        position: 'absolute',
+        borderTopRightRadius: 10,
+        backgroundColor: theme.palette.character.shirt,
+        transform: 'rotate(-75deg)',
+        zIndex: 2
+    },
+    arms: {
+        position: 'relative',
+    },
+    rightArm: {
+        width: 40,
+        height: 10,
+        top: -70,
+        right: 80,
+        position: 'absolute',
+        backgroundColor: theme.palette.character.skin,
+        transform: 'rotate(15deg)'
     },
     pants: {
         width: 70,

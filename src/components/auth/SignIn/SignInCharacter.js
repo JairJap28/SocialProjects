@@ -8,7 +8,16 @@ const SignInCharacter = () => {
             <div className={classes.head}>
                 <div className={classes.hair}>
                     <div className={classes.hairUp} />
-                    <div className={classes.hairMedium}/>
+                    <div className={classes.hairMedium} />
+                    <div className={classes.hairTop}/>
+                </div>
+                <div className={classes.eyes}>
+                    <div className={classes.eyeLeft} />
+                    <div className={classes.eyeRight}/>
+                </div>
+                <div className={classes.glasses}>
+                    <div className={classes.leftGlass} />
+                    <div className={classes.rightGlass}/>
                 </div>
             </div>
             <div className={classes.neck}/>
@@ -19,6 +28,12 @@ const SignInCharacter = () => {
                         <div className={classes.shirtCircleTwo} />
                         <div className={classes.shirtCircleThree}/>
                     </div>
+                    <div className={classes.leftSleeve} />
+                    <div className={classes.rightSleeve}/>
+                </div>
+                <div className={classes.arms}>
+                    <div className={classes.leftArm} />
+                    <div className={classes.rightArm} />
                 </div>
                 <div className={classes.pants}>
                     <div className={classes.pantLeft} />

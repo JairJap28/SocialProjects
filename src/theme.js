@@ -44,6 +44,8 @@ const theme = createMuiTheme({
             shirt: '#000',
             pants: '#00897b',
             pantsUp: '#005f56',
+            glasses: '#212121',
+            eye: '#3e2723',
             circleOne: '#ffeb3b',
             circleTwo: '#2196f3',
             circleThree: '#f44336'
