@@ -54,9 +54,8 @@ const SignInCharacter = () => {
                 </div>
             </div>
             <div className={classes.shoes}>
-                <div className={classes.rightShoe}>
-
-                </div>
+                <div className={classes.rightShoe} />
+                <div className={classes.leftShoe} />
             </div>
         </div>
     )

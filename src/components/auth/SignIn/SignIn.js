@@ -11,7 +11,6 @@ import CopyRight from '../../layout/CopyRight';
 import SignInCharacter from './SignInCharacter';
 
 // MUI Stuff
-import { useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -37,10 +36,10 @@ const SignIn = () => {
                 direction="row"
                 justify="center"
                 alignItems="center">
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                     <SignInCharacter />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar} >
                             <LockOutlinedIcon />

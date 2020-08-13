@@ -408,6 +408,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 36,
         position: 'absolute',
         backgroundColor: theme.palette.character.pants,
+        zIndex: 2
     },
     pocket: {
         position: 'absolute',
@@ -425,7 +426,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(270deg)',
         right: 0,
         top: 5,
-        zIndex: 2
+        zIndex: 3
     },
     insidePocket: {
         width: 50,
@@ -441,16 +442,17 @@ const useStyles = makeStyles((theme) => ({
     },
     rightShoe: {
         width: 40,
-        height: 20,
+        height: 15,
         top: -5,
         left: -10,
         position: 'absolute',
         backgroundColor: theme.palette.character.shoes,
         borderTopLeftRadius: 40,
-        transform: 'rotate(-25deg)',
+        transform: 'rotate(-15deg)',
         '&::before': {
             width: 15,
             height: 12,
+            top: 3,
             position: 'absolute',
             backgroundColor: 'white',
             borderStyle: 'solid',
@@ -458,6 +460,53 @@ const useStyles = makeStyles((theme) => ({
             borderTopRightRadius: 7,
             borderTopLeftRadius: 7,
             content: '""'
+        },
+        '&::after': {
+            width: 40,
+            height: 7,
+            top: 14,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 'thin',
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            content: '""',
+        }
+    },
+    leftShoe: {
+        width: 40,
+        height: 15,
+        top: -5,
+        left: 40,
+        position: 'absolute',
+        backgroundColor: theme.palette.character.shoes,
+        borderTopRightRadius: 40,
+        transform: 'rotate(15deg)',
+        '&::before': {
+            width: 15,
+            height: 12,
+            top: 3,
+            right: 0,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 'thin',
+            borderTopRightRadius: 7,
+            borderTopLeftRadius: 7,
+            content: '""'
+        },
+        '&::after': {
+            width: 40,
+            height: 7,
+            top: 14,
+            position: 'absolute',
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 'thin',
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            content: '""',
         }
     }
 }));
