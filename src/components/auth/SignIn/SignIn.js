@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { signIn } from '../../../redux/actions/authActions';
 
 // Components
-import CopyRight from '../../layout/CopyRight';
 import SignInCharacter from './SignInCharacter';
 
 // MUI Stuff
@@ -35,11 +34,14 @@ const SignIn = () => {
                 container
                 direction="row"
                 justify="center"
-                alignItems="center">
-                <Grid item xs={3}>
+                alignItems="center"
+                className={classes.container}>
+                <Grid item xs={3}
+                    component={Box}
+                    display={{ xs: "none", sm: "block", lg: "block"}} >
                     <SignInCharacter />
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={12} sm={7}>
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar} >
                             <LockOutlinedIcon />
@@ -99,10 +101,6 @@ const SignIn = () => {
                     </div>
                 </Grid>
             </Grid>
-            
-            <Box mt={8}>
-                <CopyRight />
-            </Box>
         </Container>
     );
 }

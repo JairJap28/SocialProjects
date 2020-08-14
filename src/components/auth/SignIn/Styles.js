@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
+    container: {
+        height: '100vh',
+        margin: '-70px auto'
+    },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: `${theme.palette.secondary.main} !important`,

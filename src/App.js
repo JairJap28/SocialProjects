@@ -27,11 +27,20 @@ import CreateProject from './components/projects/CreateProject';
 // Components
 import Navbar from './components/layout/Navbar';
 import SplashScreen from './components/layout/splashscreen/SplashScreen'; 
+import CopyRight from './components/layout/CopyRight';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginTop: 75,
+    height: '100vh',
+    minHeight: 500
   },
+  copyRight: {
+    width: '100%',
+    marginTop: 15,
+    marginBottom: 15,
+    position: 'absolute',
+    bottom: 0
+  }
 }));
 
 const AuthIsLoaded = ({ children }) => {
@@ -58,6 +67,9 @@ function App() {
                 <Route exact path='/create' component={CreateProject} />
               </Switch>
             </div>
+            <div className={classes.copyRight}>
+              <CopyRight />
+            </div>            
           </AuthIsLoaded>
         </div>
       </Router>

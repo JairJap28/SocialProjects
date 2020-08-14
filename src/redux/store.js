@@ -16,6 +16,7 @@ import {
     firebaseReducer,
     getFirebase
 } from 'react-redux-firebase';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import authReducer from './reducers/authReducer';
@@ -32,12 +33,15 @@ const rootReducer = combineReducers({
     firebase: firebaseReducer
 });
 
+const composeEnhancers = composeWithDevTools({
+    // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+});
+
 const store = createStore(
     rootReducer,
-    compose(
+    composeEnhancers(
         applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-        reduxFirestore(firebase, fbConfig),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        reduxFirestore(firebase, fbConfig)
     )
 );
 
