@@ -14,8 +14,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
 
 // Redux
-import { useSelector } from 'react-redux'
-import { isLoaded } from 'react-redux-firebase'
+import { 
+  useSelector,
+  connect
+} from 'react-redux';
+import { isLoaded } from 'react-redux-firebase';
 
 // Pages
 import SignIn from './components/auth/SignIn/SignIn';
@@ -30,6 +33,9 @@ import SplashScreen from './components/layout/splashscreen/SplashScreen';
 import CopyRight from './components/layout/CopyRight';
 
 const useStyles = makeStyles((theme) => ({
+  app: {
+    position: 'relative'
+  },
   container: {
     height: '100vh',
     minHeight: 500
@@ -49,13 +55,14 @@ const AuthIsLoaded = ({ children }) => {
   return children;
 }
 
-function App() {
+const App = (props) => {
   const classes = useStyles();
+  const { ui } = props;
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <div className="App">
+        <div className={classes.app}>
           <AuthIsLoaded>
             <Navbar />
             <div className={classes.container}>
@@ -67,9 +74,11 @@ function App() {
                 <Route exact path='/create' component={CreateProject} />
               </Switch>
             </div>
-            <div className={classes.copyRight}>
-              <CopyRight />
-            </div>            
+            {ui.copyRight ? (
+              <div className={classes.copyRight}>
+                <CopyRight />
+              </div>
+            ) : null}
           </AuthIsLoaded>
         </div>
       </Router>
@@ -77,4 +86,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  ui: state.ui
+});
+
+export default connect(mapStateToProps, null)(App);

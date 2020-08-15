@@ -1,4 +1,5 @@
 import React from 'react';
+import icon from '../../assets/images/Icon.png'
 
 // MUI Stuff
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,7 +7,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+
+// Icons Stuff
+import InfoIcon from '@material-ui/icons/Info';
 
 // Redux
 import { connect } from 'react-redux';
@@ -35,7 +38,7 @@ const Navbar = (props) => {
         <AppBar position="fixed">
             <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
+                    <img src={icon} alt="Icon app" width="32px" height="32px"/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
                     Social Projects
@@ -45,19 +48,6 @@ const Navbar = (props) => {
         </AppBar>
     );
 }
-
-// const Navbar = (props) => {
-//     const { auth, profile } = props;
-//     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedUpLinks />;
-//     return (
-//         <nav className="nav-wrapper grey darken-3">
-//             <div className="container">
-//                 <Link to='/' className="brand-logo"> Social Projects </Link>
-//                 { links }
-//             </div>
-//         </nav>
-//     )
-// }
 
 const mapStateToProps = (state) => ({
     auth: state.firebase.auth,

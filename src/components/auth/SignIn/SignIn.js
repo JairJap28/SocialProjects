@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
-import useStyles from './Styles';
+import styles from './Styles';
 
 // Redux
 import { connect } from 'react-redux';
 import { signIn } from '../../../redux/actions/authActions';
+import { 
+    showSnackBarError,
+    setCopyRight
+} from '../../../redux/actions/uiActions';
 
 // Components
 import SignInCharacter from './SignInCharacter';
+import SnackError from '../../layout/SnackError';
 
 // MUI Stuff
+import { withStyles } from '@material-ui/core/styles'; 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,141 +31,127 @@ import Link from '@material-ui/core/Link';
 // Icons
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-const SignIn = () => {
-    const classes = useStyles();
-    return (
-        <Container component="main">
-            <CssBaseline />
-            <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                className={classes.container}>
-                <Grid item xs={3}
-                    component={Box}
-                    display={{ xs: "none", sm: "block", lg: "block"}} >
-                    <SignInCharacter />
-                </Grid>
-                <Grid item xs={12} sm={7}>
-                    <div className={classes.paper}>
-                        <Avatar className={classes.avatar} >
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                        </Typography>
-                        <form className={classes.form} noValidate>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Sign In
+class SignIn extends Component {
+    constructor(props) {
+        super(props);
+        props.setCopyRight();
+    }
+
+    state = {
+        email: '',
+        password: ''
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.signIn(this.state);
+    }
+
+    handleChange = (event) => {
+        const { id, value } = event.target;
+        this.setState({
+            [id]: value
+        });
+    }
+
+    render() {
+        const { classes } = this.props;
+        const { auth } = this.props;
+
+        if(auth.uid) return <Redirect to='/'/>
+
+        return (
+            <Container component="main">
+                <CssBaseline />
+                <SnackError />
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                    className={classes.container}>
+                    <Grid item xs={3}
+                        component={Box}
+                        display={{ xs: "none", sm: "block", lg: "block" }} >
+                        <SignInCharacter />
+                    </Grid>
+                    <Grid item xs={12} sm={7}>
+                        <div className={classes.paper}>
+                            <Avatar className={classes.avatar} >
+                                <LockOutlinedIcon />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                Sign in
+                            </Typography>
+                            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={this.handleChange}
+                                    autoFocus
+                                />
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    onChange={this.handleChange}
+                                    autoComplete="current-password"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox value="remember" color="primary" />}
+                                    label="Remember me"
+                                />
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Sign In
                             </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                            </Link>
+                                <Grid container>
+                                    <Grid item xs>
+                                        <Link href="#" variant="body2">
+                                            Forgot password?
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <Link component={NavLink} to="/signup" variant="body2">
+                                            {"Don't have an account? Sign Up"}
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <Link component={NavLink} to="/signup" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Container>
-    );
-}
-
-// class SignIn extends Component {
-//     state = {
-//         email: '',
-//         password: ''
-//     }
-
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-//         this.props.signIn(this.state);
-//         this.setState({ email: '', password: '' });
-//     }
-
-//     handleChange = (event) => {
-//         const { id, value } = event.target;
-//         this.setState({
-//             [id]: value
-//         });
-//     }
-
-//     render() {
-//         const { authError, auth } = this.props;
-
-//         if(auth.uid) return <Redirect to='/'/>
-
-//         return (
-//             <div className="container">
-//                 <form onSubmit={this.handleSubmit} className="white">
-//                     <h5 className="grey-text text-darken-3">
-//                         Sign In
-//                     </h5>
-//                     <div className="input-field">
-//                         <label htmlFor="email"> Email </label>
-//                         <input type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <label htmlFor="password"> Password </label>
-//                         <input type="password" id="password" value={this.state.password} onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <button className="btn pink lighten-1 z-depth-0">
-//                             Login
-//                         </button>
-//                         <div className="red-text center">
-//                             {authError ? <p>{authError}</p> : null }
-//                         </div>
-//                     </div>
-//                 </form>
-//             </div>
-//         )
-//     }
-// }
+            </Container>
+        );
+    }
+};
 
 const mapStateToProps = (state) => ({
+    ui: state.ui,
     authError: state.auth.authError,
     auth: state.firebase.auth
 });
 
-export default connect(mapStateToProps, { signIn })(SignIn);
+const mapActionsToProps = {
+    signIn,
+    showSnackBarError,
+    setCopyRight
+}
+
+export default connect(mapStateToProps, mapActionsToProps )(withStyles(styles, { widthTheme: true })(SignIn));

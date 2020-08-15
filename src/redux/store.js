@@ -21,12 +21,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
 import authReducer from './reducers/authReducer';
 import projectReducer from './reducers/projectReducer';
+import uiReducer from './reducers/uiReducer';
 
 // Firebase
 import fbConfig from '../config/fbConfig';
 import firebase from 'firebase/app';
 
 const rootReducer = combineReducers({
+    ui: uiReducer,
     auth: authReducer,
     project: projectReducer,
     firestore: firestoreReducer,

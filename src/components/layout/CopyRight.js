@@ -8,7 +8,7 @@ const CopyRight = () => {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://github.com/JairJap28">
+            <Link color="inherit" href="https://github.com/JairJap28" target="_blank">
                 Jair Jimenez
             </Link>{' '}
             {new Date().getFullYear()}

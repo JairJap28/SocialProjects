@@ -5,6 +5,8 @@ import useStyles from './Styles';
 // Redux
 import { connect } from 'react-redux';
 import { signUp } from '../../../redux/actions/authActions';
+import { setCopyRight } from '../../../redux/actions/uiActions';
+
 
 // Components
 import CopyRight from '../../layout/CopyRight';
@@ -25,8 +27,12 @@ import Container from '@material-ui/core/Container';
 // Icons
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-const SignUp = () => {
+const SignUp = (props) => {
     const classes = useStyles();
+
+    React.useEffect(() => {
+        props.setCopyRight();
+    }, []);
 
     return (
         <Container component="main">
@@ -97,7 +103,7 @@ const SignUp = () => {
                                 className={classes.submit}
                             >
                                 Sign Up
-            </Button>
+                            </Button>
                             <Grid container justify="flex-end">
                                 <Grid item>
                                     <Link component={NavLink} to="/signin" variant="body2">
@@ -112,9 +118,6 @@ const SignUp = () => {
 
                 </Grid>
             </Grid>
-            <Box mt={5}>
-                <CopyRight />
-            </Box>
         </Container>
     );
 }
@@ -184,4 +187,4 @@ const mapStateToProps = (state) => ({
     authError: state.auth.authError
 });
 
-export default connect(mapStateToProps, { signUp })(SignUp);
+export default connect(mapStateToProps, { signUp, setCopyRight })(SignUp);
