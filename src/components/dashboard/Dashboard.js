@@ -1,31 +1,47 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import useStyle from './styles';
 
 // Redux
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { clearCopyRight } from '../../redux/actions/uiActions';
 
 // Components
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
 
+// MUI Stuff
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 class Dashboard extends Component {
+    constructor(props){
+        super(props);
+        props.clearCopyRight();
+    }
+
     render() {
+        const { classes } = this.props;        
         const { projects, auth, notifications } = this.props;
         
         if (! auth.uid) return <Redirect to='/signin'/>
         return (
-            <div className="dashboard container">
-                <div className="row">
-                    <div className="col s12 m6">
-                        <ProjectList projects={projects || []}/>
+            <Container component="main">
+                <CssBaseline />
+                <div className={classes.container}>
+                    <div className={classes.containerProjects}>
+                        <div className={classes.projects}>
+                            <ProjectList projects={projects || []}/>
+                        </div>
                     </div>
-                    <div className="col s12 m5 offset-m1">
+                    <div className={classes.notifications}>
                         <Notifications notifications={notifications}/>
                     </div>
                 </div>
-            </div>
+            </Container>
         )
         
     }
@@ -49,5 +65,5 @@ export default compose(
             orderBy: ['time', 'desc']
         }
     ]),
-    connect(mapStateToProps)    
-)(Dashboard);
+    connect(mapStateToProps, { clearCopyRight })    
+)(withStyles(useStyle)(Dashboard));

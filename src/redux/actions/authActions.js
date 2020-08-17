@@ -3,7 +3,8 @@ import {
     LOGIN_ERROR,
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
-    SIGNOUT_SUCCESS
+    SIGNOUT_SUCCESS,
+    SET_ERROR_SNACKBAR
 } from '../types';
 
 export const signIn = (credentials) => {
@@ -14,6 +15,7 @@ export const signIn = (credentials) => {
                 message: 'Email and password must not be empty'
             }
             dispatch({ type: LOGIN_ERROR, err: error});
+            dispatch({ type: SET_ERROR_SNACKBAR, err: error });
         } else {
             const firebase = getFirebase();
 
@@ -24,6 +26,7 @@ export const signIn = (credentials) => {
                 dispatch({ type: LOGIN_SUCCESS });
             }).catch(err => {
                 dispatch({ type: LOGIN_ERROR, err });
+                dispatch({ type: SET_ERROR_SNACKBAR, err });
             })
         }
     }

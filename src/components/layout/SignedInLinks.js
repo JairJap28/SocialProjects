@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Redux
 import { connect } from 'react-redux';
 import { signOut } from '../../redux/actions/authActions';
 
+// MUI Stuff
+import Button from '@material-ui/core/Button';
+import { Avatar, makeStyles } from '@material-ui/core';
+
+
+const useStyles = makeStyles((theme) => ({
+    avatar: {
+        marginLeft: 15,
+        color: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.secondary.main,
+    }
+}));
+
 const SignedInLinks = ({ signOut, profile: { initials } }) => {
+    const classes = useStyles();
     return (
-        <ul className="right">
-            <li><NavLink to="/create">New Project</NavLink></li>
-            <li><NavLink to="/signin" onClick={() => signOut()}>Log Out</NavLink></li>
-            <li><NavLink to="/" className="btn btn-floating pink lighten-1">{initials}</NavLink></li>
-        </ul>
+        <Fragment>
+            <Button 
+                color="inherit"
+                to="/create">
+                New Project
+            </Button>
+            <Button 
+                color="inherit" 
+                onClick={() => signOut()} 
+                component={NavLink} 
+                to="/signin">
+                Log Out
+            </Button>
+            <Avatar className={classes.avatar}>
+                {initials}
+            </Avatar>
+        </Fragment>
     )
 }
 
