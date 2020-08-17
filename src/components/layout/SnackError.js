@@ -26,7 +26,7 @@ const SnackError = (props) => {
     const classes = useStyles();
     const { ui: { snackBarError} } = props;
 
-    const [state, setState ] = React.useState({
+    const [state ] = React.useState({
         vertical: 'top',
         horizontal: 'right'
     });

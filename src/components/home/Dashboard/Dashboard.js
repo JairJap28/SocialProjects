@@ -13,9 +13,42 @@ import Notifications from '../Notifications/Notifications';
 import ProjectList from '../../projects/ProjectList';
 
 // MUI Stuff
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+
+const DashPositioned = ({ classes, theme, projects, notifications }) => {
+    const matches = useMediaQuery(theme.breakpoints.only('xs'));
+
+    const [position, setPosition] = React.useState({
+        direction: 'column',
+        notifications: 1,
+        dashboard: 2
+    });
+
+    React.useEffect(() => {
+        if (matches) setPosition({ direction: 'column', notifications: 1, dashboard: 2 });
+        else setPosition({ direction: 'row', dashboard: 1, notifications: 2 });
+    }, [matches]);
+
+    return (
+        <Container component="main">
+                <CssBaseline />
+                <Box display="flex" flexDirection={position.direction}>
+                    <Box className={classes.containerProjects} order={position.dashboard}>
+                        <div className={classes.projects}>
+                            <ProjectList projects={projects || []} />
+                        </div>
+                    </Box>
+                    <Box className={classes.notifications} order={position.notifications}>
+                        <Notifications notifications={notifications}/>
+                    </Box>
+                </Box>
+            </Container>
+    );
+}
 
 class Dashboard extends Component {
     constructor(props){
@@ -23,25 +56,23 @@ class Dashboard extends Component {
         props.clearCopyRight();
     }
 
+    state = {
+        direction: 'column',
+        notifications: 1,
+        dashboard: 2,
+    }
+
     render() {
-        const { classes } = this.props;        
+        const { classes, theme } = this.props;        
         const { projects, auth, notifications } = this.props;
         
         if (! auth.uid) return <Redirect to='/signin'/>
         return (
-            <Container component="main">
-                <CssBaseline />
-                <div className={classes.container}>
-                    <div className={classes.containerProjects}>
-                        <div className={classes.projects}>
-                            <ProjectList projects={projects || []}/>
-                        </div>
-                    </div>
-                    <div className={classes.notifications}>
-                        <Notifications notifications={notifications}/>
-                    </div>
-                </div>
-            </Container>
+            <DashPositioned 
+                classes={classes}
+                theme={theme} 
+                projects={projects}
+                notifications={notifications} />
         )
         
     }
@@ -66,4 +97,4 @@ export default compose(
         }
     ]),
     connect(mapStateToProps, { clearCopyRight })    
-)(withStyles(useStyle)(Dashboard));
+)(withStyles(useStyle, { withTheme: true })(Dashboard));

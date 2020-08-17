@@ -389,7 +389,6 @@ const useStyles = makeStyles((theme) => ({
             height: 5,
             position: 'absolute',
             top: 0,
-            zIndex: 2,
             backgroundColor: theme.palette.character.pantsUp,
             content: '""',
             zIndex: 3

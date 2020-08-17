@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    card: {
+    accordion: {
         position: 'relative',
         '&::before': {
             width: 0,
@@ -26,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
             borderColor: theme.palette.secondary.dark,
             content: '""'
         }
+    },
+    card: {
+        width: '100%'
+    },
+    listItem: {
+        paddingLeft: 0,
+        paddingRight: 0
     }
 }));
 

@@ -3,69 +3,74 @@ import moment from 'moment';
 import useStyles from './Styles';
 
 // MUI Stuff
+import useTheme from '@material-ui/core/styles/useTheme';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 
 const Notifications = ({ notifications }) => {
+    const theme = useTheme();
     const classes = useStyles();
+    const matches = useMediaQuery(theme.breakpoints.only('xs'));
+
+    const [open, setOpen] = React.useState(matches);
+
+    React.useEffect(() => {
+        if(matches) setOpen(false);
+        else setOpen(true);
+    }, [matches]);
+
+    const handleChangeAccordion = () => {
+        if(matches) setOpen(!open);
+    }
 
     return (
-        <Card className={classes.card}>
-            <CardHeader 
-                title="Notifications"
-                subheader="Last Three notifications of the system"
-                />
-            <CardContent>
-                <List>
-                    { notifications && notifications.map(item => (
-                        <Fragment>
-                            <ListItem key={item.id}>
-                            <ListItemText 
-                                primary={
-                                    <Fragment>
-                                        <Typography color="primary">
-                                            @{item.user}
-                                        </Typography>
-                                        <Typography>
-                                            {item.content}
-                                        </Typography>
-                                    </Fragment>
-                                } 
-                                secondary={moment(item.time.toDate()).fromNow()}
-                                />
-                            </ListItem>
-                            <Divider light/>
-                        </Fragment>
-                    )) }
-                </List>
-            </CardContent>
-        </Card>
+        <Accordion expanded={open} onChange={handleChangeAccordion}>
+            <AccordionSummary className={classes.accordion}>
+                <Box display="flex" flexDirection="column">
+                    <Box>
+                        <Typography variant="h6">Notifications</Typography>
+                    </Box>
+                    <Box>
+                        <Typography variant="body2">Last Three notifications of the system</Typography>
+                    </Box>
+                </Box>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Card className={classes.card}>
+                    <CardContent>
+                        <List>
+                            {notifications && notifications.map(item => (
+                                <ListItem key={item.id} disableGutters divider>
+                                    <ListItemText
+                                        primary={
+                                            <Fragment>
+                                                <Typography color="primary">
+                                                    @{item.user}
+                                                </Typography>
+                                                <Typography>
+                                                    {item.content}
+                                                </Typography>
+                                            </Fragment>
+                                        }
+                                        secondary={moment(item.time.toDate()).fromNow()}
+                                    />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </CardContent>
+                </Card>
+            </AccordionDetails>
+        </Accordion>
     )
 }
-
-{/* <div className="section">
-            <div className="card z-depth-0">
-                <div className="card-content">
-                    <span className="card-title">Notifications</span>
-                    <ul className="notifications">
-                        {notifications && notifications.map(item => (
-                            <li key={item.id}>
-                                <span className="pink-text">{item.user} </span>
-                                <span>{item.content}</span>
-                                <div className="grey-text note-date">
-                                    {moment(item.time.toDate()).fromNow()}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </div> */}
 
 export default Notifications;

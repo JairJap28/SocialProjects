@@ -1,14 +1,10 @@
 const useStyle = (theme) => ({
-    container: {
-        paddingTop: 80,
-        display: 'flex',
-        
-        height: '95vh'
-    },
     containerProjects: {
         width: '60%',
-        [theme.breakpoints.between('xm', 'sm')]:{
-            width: '50%'
+        marginTop: 75,
+        [theme.breakpoints.only('xs')]:{
+            width: '100%',
+            marginTop: 0,
         },
         overflow: 'auto',
         direction: 'rtl',
@@ -19,6 +15,14 @@ const useStyle = (theme) => ({
     notifications: {
         width: '40%',
         marginLeft: 30,
+        marginTop: 80,
+        [theme.breakpoints.only('xs')]:{
+            width: '100%',
+            padding: 10,
+            marginLeft: 0,
+            marginBottom: 15,
+            backgroundColor: theme.palette.standard.light,
+        },
     }
 });
 

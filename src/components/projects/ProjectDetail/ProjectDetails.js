@@ -21,7 +21,7 @@ const ProjectDetails = (props) => {
     const classes = useStyles();
 
     React.useEffect(() => {
-        props.setCopyRight();
+        props.setCopyRight()
     }, []);
 
     if(!auth.uid) return <Redirect to='/signin'/>

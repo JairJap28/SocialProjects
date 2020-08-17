@@ -30,9 +30,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 const SignUp = (props) => {
     const classes = useStyles();
 
-    React.useEffect(() => {
-        props.setCopyRight();
-    }, []);
+    React.useEffect(props.setCopyRight(), []);
 
     return (
         <Container component="main">

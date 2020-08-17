@@ -11,9 +11,10 @@ export const clearErrors = () => {
     }
 };
 
-export const showSnackBarError = () => {
+export const showSnackBarError = (error) => {
     return (dispatch, getState) => {
-        dispatch({ type:  SET_ERROR_SNACKBAR });
+        console.log(error);
+        dispatch({ type:  SET_ERROR_SNACKBAR, err: error });
     }
 };
 

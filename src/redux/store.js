@@ -1,8 +1,7 @@
 // Redux
 import {
     createStore,
-    applyMiddleware,
-    compose
+    applyMiddleware
 } from 'redux';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
