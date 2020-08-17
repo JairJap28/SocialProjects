@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, NavLink } from 'react-router-dom';
 import icon from '../../assets/images/Icon.png'
 
 // MUI Stuff
@@ -7,9 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-
-// Icons Stuff
-import InfoIcon from '@material-ui/icons/Info';
 
 // Redux
 import { connect } from 'react-redux';
@@ -27,20 +25,37 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        textDecoration: 'none',
+        color: 'inherit'
     },
 }));
 
 const Navbar = (props) => {
     const classes = useStyles();
+    const history = useHistory();
     const { auth, profile } = props;
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedUpLinks />;
+
+    const goToProjects = () => {
+        history.push('/');
+    }
+
     return (
         <AppBar position="fixed">
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton 
+                    edge="start" 
+                    className={classes.menuButton} 
+                    color="inherit" 
+                    aria-label="menu"
+                    onClick={goToProjects}>
                     <img src={icon} alt="Icon app" width="32px" height="32px"/>
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
+                <Typography 
+                    variant="h6" 
+                    component={NavLink}
+                    to="/"
+                    className={classes.title}>
                     Social Projects
                 </Typography>
                 {links}

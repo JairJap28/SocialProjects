@@ -14,6 +14,11 @@ const theme = createMuiTheme({
             dark: '#b26500',
             contrastText: '#FFF'
         },
+        standard: {
+            light: '#909090',
+            main: '#757575',
+            dark: '#515151'
+        },
         error: {
             light: '#e57373',
             main: '#f44336',
@@ -53,6 +58,15 @@ const theme = createMuiTheme({
             circleTwo: '#2196f3',
             circleThree: '#f44336'
         }
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 960,
+            lg: 1280,
+            xl: 1920,
+        },
     },
 });
 

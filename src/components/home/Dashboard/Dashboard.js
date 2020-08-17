@@ -6,11 +6,11 @@ import useStyle from './styles';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { clearCopyRight } from '../../redux/actions/uiActions';
+import { clearCopyRight } from '../../../redux/actions/uiActions';
 
 // Components
-import Notifications from './Notifications';
-import ProjectList from '../projects/ProjectList';
+import Notifications from '../Notifications/Notifications';
+import ProjectList from '../../projects/ProjectList';
 
 // MUI Stuff
 import { withStyles } from '@material-ui/core/styles';

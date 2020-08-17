@@ -2,18 +2,22 @@ const useStyle = (theme) => ({
     container: {
         paddingTop: 80,
         display: 'flex',
+        
         height: '95vh'
     },
     containerProjects: {
         width: '60%',
+        [theme.breakpoints.between('xm', 'sm')]:{
+            width: '50%'
+        },
         overflow: 'auto',
-        direction: 'rtl'
+        direction: 'rtl',
     },
     projects: {
         direction: 'ltr !important'
     },
     notifications: {
-        width: '30%',
+        width: '40%',
         marginLeft: 30,
     }
 });

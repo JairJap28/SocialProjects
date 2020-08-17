@@ -27,7 +27,7 @@ const ProjectSummary = ({ project }) => {
                     {project.title}
                 </Typography>
                 <Typography variant="body1" color="textSecondary" component="p">
-                    Posted by { `${project.authorFirstName} ${project.authorLastName}` }
+                    Posted by { `@${project.authorFirstName} ${project.authorLastName}` }
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                     {moment(project.createdAt.toDate()).calendar()}

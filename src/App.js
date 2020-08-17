@@ -23,8 +23,8 @@ import { isLoaded } from 'react-redux-firebase';
 // Pages
 import SignIn from './components/auth/SignIn/SignIn';
 import SignUp from './components/auth/SignUp/SignUp';
-import Dashboard from './components/dashboard/Dashboard';
-import ProjectDetails from './components/projects/ProjectDetails';
+import Dashboard from './components/home/Dashboard/Dashboard';
+import ProjectDetails from './components/projects/ProjectDetail/ProjectDetails';
 import CreateProject from './components/projects/CreateProject';
 
 // Components

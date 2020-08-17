@@ -24,6 +24,7 @@ const SignedInLinks = ({ signOut, profile: { initials } }) => {
         <Fragment>
             <Button 
                 color="inherit"
+                component={NavLink}
                 to="/create">
                 New Project
             </Button>
