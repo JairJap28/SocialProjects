@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
             borderStyle: 'solid',
             borderColor: theme.palette.secondary.dark,
             content: '""'
+        },
+        [theme.breakpoints.only('xs')]: {
+            margin: 10
         }
     },
     postedBy: {

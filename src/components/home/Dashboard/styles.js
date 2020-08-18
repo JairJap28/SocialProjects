@@ -1,8 +1,10 @@
 const useStyle = (theme) => ({
     containerProjects: {
+        height: '80vh',
         width: '60%',
         marginTop: 75,
         [theme.breakpoints.only('xs')]:{
+            height: '70vh',
             width: '100%',
             marginTop: 0,
         },

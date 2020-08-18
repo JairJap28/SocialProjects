@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import moment from 'moment';
 import useStyles from './Styles';
 
+// Components
+import NotificationsSkeleton from './NotificationsSkeleton';
+
 // MUI Stuff
 import useTheme from '@material-ui/core/styles/useTheme';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -32,6 +35,28 @@ const Notifications = ({ notifications }) => {
         if(matches) setOpen(!open);
     }
 
+    const listNotifications = (
+        <List>
+            {notifications && notifications.map(item => (
+                <ListItem key={item.id} disableGutters divider>
+                    <ListItemText
+                        primary={
+                            <Fragment>
+                                <Typography color="primary">
+                                    @{item.user}
+                                </Typography>
+                                <Typography>
+                                    {item.content}
+                                </Typography>
+                            </Fragment>
+                        }
+                        secondary={moment(item.time.toDate()).fromNow()}
+                    />
+                </ListItem>
+            ))}
+        </List>
+    );
+
     return (
         <Accordion expanded={open} onChange={handleChangeAccordion}>
             <AccordionSummary className={classes.accordion}>
@@ -47,25 +72,7 @@ const Notifications = ({ notifications }) => {
             <AccordionDetails>
                 <Card className={classes.card}>
                     <CardContent>
-                        <List>
-                            {notifications && notifications.map(item => (
-                                <ListItem key={item.id} disableGutters divider>
-                                    <ListItemText
-                                        primary={
-                                            <Fragment>
-                                                <Typography color="primary">
-                                                    @{item.user}
-                                                </Typography>
-                                                <Typography>
-                                                    {item.content}
-                                                </Typography>
-                                            </Fragment>
-                                        }
-                                        secondary={moment(item.time.toDate()).fromNow()}
-                                    />
-                                </ListItem>
-                            ))}
-                        </List>
+                        { notifications ? listNotifications : <NotificationsSkeleton /> }
                     </CardContent>
                 </Card>
             </AccordionDetails>
