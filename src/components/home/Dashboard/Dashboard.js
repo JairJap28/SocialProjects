@@ -10,7 +10,7 @@ import { clearCopyRight } from '../../../redux/actions/uiActions';
 
 // Components
 import Notifications from '../Notifications/Notifications';
-import ProjectList from '../../projects/ProjectList';
+import ProjectList from '../../projects/ProjectList/ProjectList';
 
 // MUI Stuff
 import withStyles from '@material-ui/core/styles/withStyles';

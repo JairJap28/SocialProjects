@@ -3,6 +3,9 @@ import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import useStyles from './Styles';
 
+// Component
+import ProjectDetailSkeleton from './ProjectDetailSkeleton';
+
 // Redux
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -26,33 +29,31 @@ const ProjectDetails = (props) => {
 
     if(!auth.uid) return <Redirect to='/signin'/>
 
-    if (project) {
-        return (
-            <div className={classes.main}>
-                <Card className={classes.card}>
-                    <CardHeader title={project.title} />
-                    <Divider variant="middle"/>
-                    <CardContent>
-                        <Typography variant="body1">
-                            {project.content}
-                        </Typography>
-                        <Typography variant="body2">
-                            Posted by <span className={classes.postedBy}>{`@${project.authorFirstName} ${project.authorLastName}`}</span>
-                        </Typography>
-                        <Typography variant="body2" className={classes.date}>
-                            {moment(project.createdAt.toDate()).calendar()}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </div>
-        )
-    } else {
-        return (
-            <div className="container center">
-                <p>Loading project...</p>
-            </div>
-        )
-    }
+    const projectDetail = (
+        <div>
+            <CardHeader title={project?.title} />
+            <Divider variant="middle" />
+            <CardContent>
+                <Typography variant="body1">
+                    {project?.content}
+                </Typography>
+                <Typography variant="body2">
+                    Posted by <span className={classes.postedBy}>{`@${project?.authorFirstName} ${project?.authorLastName}`}</span>
+                </Typography>
+                <Typography variant="body2" className={classes.date}>
+                    {moment(project?.createdAt.toDate()).calendar()}
+                </Typography>
+            </CardContent>
+        </div>
+    );
+        
+    return (
+        <div className={classes.main}>
+            <Card className={classes.card}>
+                {project ? projectDetail : <ProjectDetailSkeleton />}
+            </Card>
+        </div>
+    )
 }
 
 const mapStateToProps = (state, ownProps) => {

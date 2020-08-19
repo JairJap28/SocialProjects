@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
+// Components
+import CustomSkeleton from '../../layout/CustomSkeleton';
 
 // MUI Stuff
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -11,26 +13,26 @@ const NotificationsSkeleton = () => {
     const theme = useTheme();
     return (
         <List>
-            { [0,1,3].map(item => (
+            { [...Array(3).keys()].map(item => (
                 <ListItem key={item}>
                     <ListItemText
                         primary={
                             <Fragment>
-                                <SkeletonTheme 
+                                <CustomSkeleton 
                                     color={theme.palette.primary.light} 
-                                    highlightColor={theme.palette.primary.main}>
-                                        <Skeleton/>
-                                </SkeletonTheme>
-                                <SkeletonTheme
+                                    highlightColor={theme.palette.primary.main}
+                                    width="80%"
+                                />
+                                <CustomSkeleton 
                                     color={theme.palette.standard.light}
-                                    highlightColor={theme.palette.standard.dark}>
-                                        <Skeleton />
-                                </SkeletonTheme>
-                                <SkeletonTheme
+                                    highlightColor={theme.palette.standard.dark}
+                                    width="60%"
+                                />
+                                <CustomSkeleton 
                                     color={theme.palette.standard.light}
-                                    highlightColor={theme.palette.standard.main}>
-                                        <Skeleton />
-                                </SkeletonTheme>
+                                    highlightColor={theme.palette.standard.main}
+                                    width="40%"
+                                />
                             </Fragment>
                         }
                     />
