@@ -52,6 +52,7 @@ const theme = createMuiTheme({
             pantsUp: '#005f56',
             shoes: '#B72F33',
             glasses: '#212121',
+            glassTranslucent: 'rgba(0,0,0, 0.8)',
             eye: '#3e2723',
             mouth: '#FF836F',
             circleOne: '#ffeb3b',

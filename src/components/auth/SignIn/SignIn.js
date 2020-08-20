@@ -11,7 +11,7 @@ import {
 } from '../../../redux/actions/uiActions';
 
 // Components
-import SignInCharacter from './SignInCharacter';
+import Character from '../Character/Character';
 import SnackError from '../../layout/SnackError';
 
 // MUI Stuff
@@ -73,7 +73,7 @@ class SignIn extends Component {
                     <Grid item xs={3}
                         component={Box}
                         display={{ xs: "none", sm: "block", lg: "block" }} >
-                        <SignInCharacter />
+                        <Character />
                     </Grid>
                     <Grid item xs={12} sm={7}>
                         <div className={classes.paper}>

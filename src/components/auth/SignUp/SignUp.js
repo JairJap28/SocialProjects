@@ -10,6 +10,7 @@ import { setCopyRight } from '../../../redux/actions/uiActions';
 
 // Components
 import CopyRight from '../../layout/CopyRight';
+import Character from '../Character/Character';
 
 // MUI Stuff
 import Avatar from '@material-ui/core/Avatar';
@@ -30,13 +31,20 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 const SignUp = (props) => {
     const classes = useStyles();
 
-    React.useEffect(props.setCopyRight(), []);
+    React.useEffect(() => {
+        props.setCopyRight()
+    }, []);
 
     return (
         <Container component="main">
             <CssBaseline />
-            <Grid container>
-                <Grid item xs={6}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                className={classes.container}>
+                <Grid item xs={7}>
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />
@@ -112,8 +120,10 @@ const SignUp = (props) => {
                         </form>
                     </div>
                 </Grid>
-                <Grid item xs={6}>
-
+                <Grid item xs={3}
+                    component={Box}
+                    display={{ xs: "none", sm: "block", lg: "block" }} >
+                    <Character />
                 </Grid>
             </Grid>
         </Container>
