@@ -73,7 +73,9 @@ class SignIn extends Component {
                     <Grid item xs={3}
                         component={Box}
                         display={{ xs: "none", sm: "block", lg: "block" }} >
-                        <Character />
+                            <div className={classes.containerCharacter}>
+                                <Character colorGlass={"red"/*theme.palette.character.glassTranslucent*/}/>
+                            </div>
                     </Grid>
                     <Grid item xs={12} sm={7}>
                         <div className={classes.paper}>

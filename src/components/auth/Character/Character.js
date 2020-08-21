@@ -7,17 +7,13 @@ import Shirt from './Shirt/Shirt';
 import Pants from './Pants/Pants';
 import Shoes from './Shoes/Shoes';
 
-// MUI Stuff
-import useTheme from '@material-ui/core/styles/useTheme';
-
-const Character = () => {
+const Character = ({colorGlass, value}) => {
     const classes = useStyles();
-    const theme = useTheme();
     return (
         <div className={classes.mainContainer}>
-            <Head colorGlass={theme.palette.character.glassTranslucent}/>
+            <Head colorGlass={colorGlass}/>
             <div className={classes.body}>
-                <Shirt />
+                <Shirt value={value}/>
                 <Pants />
             </div>
             <Shoes />

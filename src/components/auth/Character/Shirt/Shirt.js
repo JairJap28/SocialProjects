@@ -1,8 +1,8 @@
 import React from 'react';
 import useStyles from './Styles';
 
-const Shirt = () => {
-    const classes = useStyles();
+const Shirt = ({ value }) => {
+    const classes = useStyles({ value });
     return (
         <div>
             <div className={classes.shirt}>

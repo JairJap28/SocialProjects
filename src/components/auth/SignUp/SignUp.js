@@ -44,7 +44,7 @@ const SignUp = (props) => {
                 justify="center"
                 alignItems="center"
                 className={classes.container}>
-                <Grid item xs={7}>
+                <Grid item xs={12} sm={7}>
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />
@@ -123,7 +123,7 @@ const SignUp = (props) => {
                 <Grid item xs={3}
                     component={Box}
                     display={{ xs: "none", sm: "block", lg: "block" }} >
-                    <Character />
+                    <Character value={true}/>
                 </Grid>
             </Grid>
         </Container>

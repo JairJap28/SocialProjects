@@ -8,6 +8,9 @@ const useStyles = (theme) => ({
         height: '100vh',
         margin: 'auto'
     },
+    containerCharacter: {
+        marginRight: 110
+    },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: `${theme.palette.secondary.main} !important`,
