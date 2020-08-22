@@ -15,7 +15,8 @@ import Character from '../Character/Character';
 import SnackError from '../../layout/SnackError';
 
 // MUI Stuff
-import { withStyles } from '@material-ui/core/styles'; 
+import withStyles from '@material-ui/core/styles/withStyles'; 
+import useTheme from '@material-ui/core/styles/useTheme';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,6 +31,13 @@ import Link from '@material-ui/core/Link';
 
 // Icons
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
+const CharacterSpace = () => {
+    const theme = useTheme();
+    return (
+        <Character colorGlass={theme.palette.character.glassTranslucent}/>
+    );
+}
 
 class SignIn extends Component {
     constructor(props) {
@@ -74,7 +82,7 @@ class SignIn extends Component {
                         component={Box}
                         display={{ xs: "none", sm: "block", lg: "block" }} >
                             <div className={classes.containerCharacter}>
-                                <Character colorGlass={"red"/*theme.palette.character.glassTranslucent*/}/>
+                                <CharacterSpace />
                             </div>
                     </Grid>
                     <Grid item xs={12} sm={7}>

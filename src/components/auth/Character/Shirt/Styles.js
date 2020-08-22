@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: 10,
         backgroundColor: theme.palette.character.shirt,
         transform: props => props.value ? 'rotate(75deg)' : 'rotate(50deg)',
+        zIndex: 2
     },
     rightSleeve: {
         width: 25,
@@ -74,16 +75,16 @@ const useStyles = makeStyles((theme) => ({
         width: 40,
         height: 10,
         top: -70,
-        right: -120,
+        right: props => props.value ? 10 : -120,
         position: 'absolute',
         backgroundColor: theme.palette.character.skin,
-        transform: 'rotate(15deg)'
+        transform: props => props.value ? 'rotate(-15deg)' : 'rotate(15deg)'
     },
     leftArm: {
         width: 20,
         height: 10,
-        top: props => props.value ? 80 : -52,
-        left: -30,
+        top: props => props.value ? -52 : -52,
+        left: props => props.value ? 90 : -30,
         position: 'absolute',
         backgroundColor: theme.palette.character.skin,
         transform: 'rotate(-40deg)',
@@ -102,10 +103,11 @@ const useStyles = makeStyles((theme) => ({
         width: 15,
         height: 15,
         top: -67,
-        right: -130,
+        right: props => props.value ? 45 : -130,
         position: 'absolute',
         borderRadius: '40%',
         backgroundColor: theme.palette.character.skin,
+        transform: props => props.value ? 'rotate(160deg)' : null,
         '&::before': {
             width: 5,
             height: 1,
@@ -130,12 +132,12 @@ const useStyles = makeStyles((theme) => ({
     leftHand: {
         width: 15,
         height: 15,
-        top: props => props.value ? 80 : -65,
-        left: -52,
+        top: props => props.value ? -60 : -65,
+        left: props => props.value ? 100 : -52,
         position: 'absolute',
         borderRadius: '40%',
         backgroundColor: theme.palette.character.skin,
-        transform: 'rotate(200deg)',
+        transform: props => props.value ? 'rotate(-30deg)' : 'rotate(200deg)',
         '&::before': {
             width: 5,
             height: 1,
@@ -160,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     handThumbFinger: {
         width: 7,
         height: 3,
-        top: 15,
+        top: props => props.value ? -3 : 15,
         position: 'absolute',
         borderBottomRightRadius: 7,
         backgroundColor: theme.palette.character.skin,
@@ -169,13 +171,13 @@ const useStyles = makeStyles((theme) => ({
     handIndexFinger: {
         width: 10,
         height: 3,
-        top: 2,
+        top: props => props.value ? 11 : 2,
         right: -7,
         position: 'absolute',
         borderTopRightRadius: 7,
         borderBottomRightRadius: 7,
         backgroundColor: theme.palette.character.skin,
-        transform: 'rotate(10deg)'
+        transform: props => props.value ? 'rotate(-5deg)' : 'rotate(10deg)'
     },
 }));
 

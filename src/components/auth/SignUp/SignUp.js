@@ -9,7 +9,7 @@ import { setCopyRight } from '../../../redux/actions/uiActions';
 
 
 // Components
-import CopyRight from '../../layout/CopyRight';
+import SnackError from '../../layout/SnackError';
 import Character from '../Character/Character';
 
 // MUI Stuff
@@ -17,8 +17,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -31,13 +29,34 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 const SignUp = (props) => {
     const classes = useStyles();
 
+    const [user, setUser] = React.useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
+
     React.useEffect(() => {
         props.setCopyRight()
     }, []);
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.signUp(user);
+    }
+
+    const handleChange = (event) => {
+        const { id, value } = event.target;
+        setUser({
+            ...user,
+            [id]: value
+        });
+    }
+
     return (
         <Container component="main">
             <CssBaseline />
+            <SnackError />
             <Grid
                 container
                 direction="row"
@@ -64,6 +83,7 @@ const SignUp = (props) => {
                                         id="firstName"
                                         label="First Name"
                                         autoFocus
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -75,6 +95,7 @@ const SignUp = (props) => {
                                         label="Last Name"
                                         name="lastName"
                                         autoComplete="lname"
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -86,6 +107,7 @@ const SignUp = (props) => {
                                         label="Email Address"
                                         name="email"
                                         autoComplete="email"
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -98,6 +120,7 @@ const SignUp = (props) => {
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                             </Grid>
@@ -107,6 +130,7 @@ const SignUp = (props) => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
+                                onClick={handleSubmit}
                             >
                                 Sign Up
                             </Button>

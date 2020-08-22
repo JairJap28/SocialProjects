@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: '100vh',
-    minHeight: 500
+    minHeight: 600
   },
   copyRight: {
     width: '100%',
