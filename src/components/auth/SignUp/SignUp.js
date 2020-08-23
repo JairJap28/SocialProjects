@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
 import useStyles from './Styles';
 
@@ -9,7 +9,7 @@ import { setCopyRight } from '../../../redux/actions/uiActions';
 
 
 // Components
-import SnackError from '../../layout/SnackError';
+import Snack from '../../layout/Snack';
 import Character from '../Character/Character';
 
 // MUI Stuff
@@ -28,6 +28,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const SignUp = (props) => {
     const classes = useStyles();
+    const { auth } = props;
 
     const [user, setUser] = React.useState({
         firstName: '',
@@ -42,7 +43,7 @@ const SignUp = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        this.props.signUp(user);
+        props.signUp(user);
     }
 
     const handleChange = (event) => {
@@ -54,165 +55,111 @@ const SignUp = (props) => {
     }
 
     return (
-        <Container component="main">
-            <CssBaseline />
-            <SnackError />
-            <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                className={classes.container}>
-                <Grid item xs={12} sm={7}>
-                    <div className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign up
-                        </Typography>
-                        <form className={classes.form} noValidate>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        autoComplete="fname"
-                                        name="firstName"
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="firstName"
-                                        label="First Name"
-                                        autoFocus
-                                        onChange={handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        autoComplete="lname"
-                                        onChange={handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        onChange={handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        onChange={handleChange}
-                                    />
-                                </Grid>
+        <Fragment>
+            {auth.uid ? (
+                <Redirect to='/' />
+            ) : (
+                    <Container component="main">
+                        <CssBaseline />
+                        <Snack />
+                        <Grid
+                            container
+                            direction="row"
+                            justify="center"
+                            alignItems="center"
+                            className={classes.container}>
+                            <Grid item xs={12} sm={7}>
+                                <div className={classes.paper}>
+                                    <Avatar className={classes.avatar}>
+                                        <LockOutlinedIcon />
+                                    </Avatar>
+                                    <Typography component="h1" variant="h5">
+                                        Sign up
+                                    </Typography>
+                                    <form className={classes.form} noValidate>
+                                        <Grid container spacing={2}>
+                                            <Grid item xs={12} sm={6}>
+                                                <TextField
+                                                    autoComplete="fname"
+                                                    name="firstName"
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    id="firstName"
+                                                    label="First Name"
+                                                    autoFocus
+                                                    onChange={handleChange}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={6}>
+                                                <TextField
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    id="lastName"
+                                                    label="Last Name"
+                                                    name="lastName"
+                                                    autoComplete="lname"
+                                                    onChange={handleChange}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <TextField
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    id="email"
+                                                    label="Email Address"
+                                                    name="email"
+                                                    autoComplete="email"
+                                                    onChange={handleChange}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <TextField
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    name="password"
+                                                    label="Password"
+                                                    type="password"
+                                                    id="password"
+                                                    autoComplete="current-password"
+                                                    onChange={handleChange}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.submit}
+                                            onClick={handleSubmit}
+                                        >
+                                            Sign Up
+                                        </Button>
+                                        <Grid container justify="flex-end">
+                                            <Grid item>
+                                                <Link component={NavLink} to="/signin" variant="body2">
+                                                    Already have an account? Sign in
+                                                </Link>
+                                            </Grid>
+                                        </Grid>
+                                    </form>
+                                </div>
                             </Grid>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                                onClick={handleSubmit}
-                            >
-                                Sign Up
-                            </Button>
-                            <Grid container justify="flex-end">
-                                <Grid item>
-                                    <Link component={NavLink} to="/signin" variant="body2">
-                                        Already have an account? Sign in
-                            </Link>
-                                </Grid>
+                            <Grid item xs={3}
+                                component={Box}
+                                display={{ xs: "none", sm: "block", lg: "block" }} >
+                                <Character value={true} />
                             </Grid>
-                        </form>
-                    </div>
-                </Grid>
-                <Grid item xs={3}
-                    component={Box}
-                    display={{ xs: "none", sm: "block", lg: "block" }} >
-                    <Character value={true}/>
-                </Grid>
-            </Grid>
-        </Container>
+                        </Grid>
+                    </Container>
+                )}
+        </Fragment>        
     );
 }
-
-// class SignUp extends Component {
-//     state = {
-//         firstName: '',
-//         lastName: '',
-//         email: '',
-//         password: ''
-//     }
-
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-//         this.props.signUp(this.state);
-//     }
-
-//     handleChange = (event) => {
-//         const { id, value } = event.target;
-//         this.setState({
-//             [id]: value
-//         });
-//     }
-
-//     render() {
-//         const { auth, authError } = this.props;
-        
-//         if(auth.uid) return <Redirect to='/'/>
-//         return (
-//             <div className="container">
-//                 <form onSubmit={this.handleSubmit} className="white">
-//                     <h5 className="grey-text text-darken-3">
-//                         Sign Up
-//                     </h5>
-//                     <div className="input-field">
-//                         <label htmlFor="email"> Email </label>
-//                         <input type="email" id="email" onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <label htmlFor="password"> Password </label>
-//                         <input type="password" id="password" onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <label htmlFor="firstName"> First Name </label>
-//                         <input type="text" id="firstName" onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <label htmlFor="lastName"> Last Name </label>
-//                         <input type="text" id="lastName" onChange={this.handleChange}/>
-//                     </div>
-//                     <div className="input-field">
-//                         <button className="btn pink lighten-1 z-depth-0">
-//                             Sign Up
-//                         </button>
-//                         <div className="red-text center">
-//                             {authError ? <p>{ authError }</p> : null}
-//                         </div>
-//                     </div>
-//                 </form>
-//             </div>
-//         )
-//     }
-// }
 
 const mapStateToProps = (state) => ({
     auth: state.firebase.auth,

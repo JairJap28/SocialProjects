@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import useStyles from './Styles';
 
 // Components
-import SnackBarError from '../../layout/SnackError';
+import Snack from '../../layout/Snack';
 
 // Redux
 import { connect } from 'react-redux';
@@ -78,7 +78,7 @@ class CreateProject extends Component {
         return (
             <div
                 className={classes.container}>
-                <SnackBarError />
+                <Snack />
                 <Box
                     display="flex"
                     alignItems="center"

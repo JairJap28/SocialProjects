@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 import { signIn } from '../../../redux/actions/authActions';
 import { 
     showSnackBarError,
-    setCopyRight
+    setCopyRight,
+    openFlag
 } from '../../../redux/actions/uiActions';
 
 // Components
 import Character from '../Character/Character';
-import SnackError from '../../layout/SnackError';
+import Snack from '../../layout/Snack';
+import ResetPassword from '../DialogResetPassword/ResetPassword';
 
 // MUI Stuff
 import withStyles from '@material-ui/core/styles/withStyles'; 
@@ -28,6 +30,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 // Icons
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -62,16 +65,21 @@ class SignIn extends Component {
         });
     }
 
+    handleForgotPassword = () => {
+        this.props.openFlag();
+    }
+
     render() {
         const { classes } = this.props;
-        const { auth } = this.props;
+        const { auth, ui } = this.props;
 
         if(auth.uid) return <Redirect to='/'/>
 
         return (
             <Container component="main">
                 <CssBaseline />
-                <SnackError />
+                <Snack />
+                <ResetPassword/>
                 <Grid
                     container
                     direction="row"
@@ -118,10 +126,6 @@ class SignIn extends Component {
                                     onChange={this.handleChange}
                                     autoComplete="current-password"
                                 />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
-                                />
                                 <Button
                                     type="submit"
                                     fullWidth
@@ -133,9 +137,11 @@ class SignIn extends Component {
                             </Button>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link href="#" variant="body2">
-                                            Forgot password?
-                                        </Link>
+                                        <ButtonBase color="inherit" onClick={this.handleForgotPassword}>
+                                            <Typography variant="body2" color="primary">
+                                                Forgot password?
+                                            </Typography>
+                                        </ButtonBase>
                                     </Grid>
                                     <Grid item>
                                         <Link component={NavLink} to="/signup" variant="body2">
@@ -161,7 +167,8 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
     signIn,
     showSnackBarError,
-    setCopyRight
+    setCopyRight,
+    openFlag
 }
 
 export default connect(mapStateToProps, mapActionsToProps )(withStyles(styles, { widthTheme: true })(SignIn));

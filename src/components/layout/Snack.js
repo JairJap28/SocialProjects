@@ -22,9 +22,9 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}/>;
 }
 
-const SnackError = (props) => {
+const Snack = (props) => {
     const classes = useStyles();
-    const { ui: { snackBarError} } = props;
+    const { ui: { snackBar } } = props;
 
     const [state ] = React.useState({
         vertical: 'top',
@@ -43,11 +43,11 @@ const SnackError = (props) => {
     return (
         <Snackbar
         anchorOrigin={{ vertical, horizontal }}
-            open={snackBarError.state}
+            open={snackBar.state}
             autoHideDuration={3000}
             onClose={handleClose}
             className={classes.alert}>
-            <Alert severity="error">{snackBarError.message}</Alert>
+            <Alert severity={snackBar.type}>{snackBar.message}</Alert>
         </Snackbar>
     )
 }
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => ({
     ui: state.ui
 });
 
-export default connect(mapStateToProps, { clearErrors })(SnackError);
+export default connect(mapStateToProps, { clearErrors })(Snack);

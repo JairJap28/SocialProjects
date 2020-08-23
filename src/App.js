@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import moment from 'moment';
 
 // MUI Stuff
 import {
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AuthIsLoaded = ({ children }) => {
-  const auth = useSelector(state => state.firebase.auth)
+  const auth = useSelector(state => state.firebase.auth);
   if (!isLoaded(auth)) return <SplashScreen />;
   return children;
 }

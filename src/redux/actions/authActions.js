@@ -4,7 +4,9 @@ import {
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
     SIGNOUT_SUCCESS,
-    SET_ERROR_SNACKBAR
+    SET_ERROR_SNACKBAR,
+    SET_SUCCESS_SNACKBAR,
+    CLEAR_UI
 } from '../types';
 
 export const signIn = (credentials) => {
@@ -47,6 +49,16 @@ export const signUp = (newUser) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
 
+        if(!newUser.firstName || !newUser.lastName) {
+            const error = {
+                code: undefined,
+                message: 'Name and last name must not be empty'
+            }
+            dispatch({ type: LOGIN_ERROR, err: error});
+            dispatch({ type: SET_ERROR_SNACKBAR, err: error });
+            return;
+        }
+
         firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
             newUser.password
@@ -60,6 +72,21 @@ export const signUp = (newUser) => {
             dispatch({ type: SIGNUP_SUCCESS });
         }).catch(err => {
             dispatch({ type:  SIGNUP_ERROR, err});
+            dispatch({ type: SET_ERROR_SNACKBAR, err });
         });
     }   
+}
+
+export const resetPassword = ( email ) => {
+    return (dispatch, getState, { getFirebase }) => {
+        let firebase = getFirebase();
+        let auth = firebase.auth();
+
+        auth.sendPasswordResetEmail(email).then((test) => {
+            dispatch({ type: CLEAR_UI });
+            dispatch({ type: SET_SUCCESS_SNACKBAR, message: 'The link has been sent'});
+        }).catch((err) => {
+            dispatch({ type: SET_ERROR_SNACKBAR, err });
+        });
+    }
 }
