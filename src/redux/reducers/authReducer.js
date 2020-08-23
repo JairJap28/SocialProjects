@@ -3,7 +3,9 @@ import {
     LOGIN_ERROR,
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
-    SIGNOUT_SUCCESS
+    SIGNOUT_SUCCESS,
+    RESET_PASSWORD,
+    RESET_PASSWORD_ERROR
 } from '../types';
 
 const initState = {
@@ -33,6 +35,9 @@ const authReducer = (state = initState, action) => {
             }
         case SIGNOUT_SUCCESS:
             return state;
+        case RESET_PASSWORD_ERROR: {
+            return state;
+        }
         default: return state;
     }
 }

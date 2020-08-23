@@ -1,19 +1,34 @@
 import {
+    OPEN,
     SET_ERROR_SNACKBAR,
     SET_COPYRIGHT,
-    CLEAR_ERRORS_SNACKBAR,
+    CLEAR_UI,
+    CLEAR_SNACKBAR,
     CLEAR_COPYRIGHT
 } from '../types';
 
+export const clearUI = () => {
+    return (dispatch) => {
+        dispatch({ type: CLEAR_UI });
+    }
+}
+
+export const openFlag = () => {
+    return (dispatch) => {
+        dispatch({ type: OPEN });
+    }
+}
+
 export const clearErrors = () => {
     return (dispatch, getState) => {
-        dispatch({ type: CLEAR_ERRORS_SNACKBAR });
+        dispatch({ type: CLEAR_SNACKBAR });
     }
 };
 
-export const showSnackBarError = () => {
+export const showSnackBarError = (error) => {
     return (dispatch, getState) => {
-        dispatch({ type:  SET_ERROR_SNACKBAR });
+        console.log(error);
+        dispatch({ type:  SET_ERROR_SNACKBAR, err: error });
     }
 };
 

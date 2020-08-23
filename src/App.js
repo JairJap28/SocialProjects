@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import moment from 'moment';
 
 // MUI Stuff
 import {
@@ -23,12 +24,12 @@ import { isLoaded } from 'react-redux-firebase';
 // Pages
 import SignIn from './components/auth/SignIn/SignIn';
 import SignUp from './components/auth/SignUp/SignUp';
-import Dashboard from './components/dashboard/Dashboard';
-import ProjectDetails from './components/projects/ProjectDetails';
-import CreateProject from './components/projects/CreateProject';
+import Dashboard from './components/home/Dashboard/Dashboard';
+import ProjectDetails from './components/projects/ProjectDetail/ProjectDetails';
+import CreateProject from './components/projects/CreateProject/CreateProject';
 
 // Components
-import Navbar from './components/layout/Navbar';
+import Navbar from './components/layout/Navbar/Navbar';
 import SplashScreen from './components/layout/splashscreen/SplashScreen'; 
 import CopyRight from './components/layout/CopyRight';
 
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: '100vh',
-    minHeight: 500
+    minHeight: 600
   },
   copyRight: {
     width: '100%',
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AuthIsLoaded = ({ children }) => {
-  const auth = useSelector(state => state.firebase.auth)
+  const auth = useSelector(state => state.firebase.auth);
   if (!isLoaded(auth)) return <SplashScreen />;
   return children;
 }

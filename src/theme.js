@@ -14,6 +14,11 @@ const theme = createMuiTheme({
             dark: '#b26500',
             contrastText: '#FFF'
         },
+        standard: {
+            light: '#909090',
+            main: '#757575',
+            dark: '#515151'
+        },
         error: {
             light: '#e57373',
             main: '#f44336',
@@ -47,12 +52,22 @@ const theme = createMuiTheme({
             pantsUp: '#005f56',
             shoes: '#B72F33',
             glasses: '#212121',
+            glassTranslucent: 'rgba(0,0,0, 0.8)',
             eye: '#3e2723',
             mouth: '#FF836F',
             circleOne: '#ffeb3b',
             circleTwo: '#2196f3',
             circleThree: '#f44336'
         }
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 650,
+            md: 960,
+            lg: 1280,
+            xl: 1920,
+        },
     },
 });
 

@@ -1,40 +1,40 @@
 import {
+    OPEN,
     CLEAR_UI,
-    CLEAR_ERRORS_SNACKBAR,
-    CLEAR_SUCCESS_SNACKBAR,
+    CLEAR_SNACKBAR,
     CLEAR_COPYRIGHT,
     SET_ERROR_SNACKBAR,
+    SET_SUCCESS_SNACKBAR,
     SET_COPYRIGHT
 } from '../types';
 
 const initialState = {
     copyRight: false,
-    snackBarError: {
+    open: false,
+    error: '',
+    snackBar: {
         state: false, 
-        message: false
+        message: false,
+        type: 'info'
     },
-    snackBarSuccess: {
-        state: false, 
-        message: false
-    }
 };
 
 const uiReducer = (state = initialState, action) => {
     switch(action.type) {
         case CLEAR_UI: 
             return {
-                snackBarError: { state: false, message: '' },
-                snackBarSuccess: { state: false, message: '' }
+                open: false,
+                snackBar: { state: false, message: '', type: 'info' },
             };
-        case CLEAR_ERRORS_SNACKBAR: 
+        case CLEAR_SNACKBAR: 
             return {
                 ...state,
-                snackBarError: { state: false, message: '' },
+                snackBar: { state: false, message: '', type: 'info' },
             };
-        case CLEAR_SUCCESS_SNACKBAR:
+        case SET_SUCCESS_SNACKBAR: 
             return {
                 ...state,
-                snackBarSuccess: { state: false, message: '' },
+                snackBar: { state: true, message: action.message, type: 'success' },
             };
         case SET_ERROR_SNACKBAR:
             const error = action.err.code === 'auth/user-not-found'
@@ -42,7 +42,8 @@ const uiReducer = (state = initialState, action) => {
                 : action.err.message;
             return {
                 ...state,
-                snackBarError: { state: true, message: error },
+                error,
+                snackBar: { state: true, message: error, type: 'error' },
             };
         case SET_COPYRIGHT: 
             return {
@@ -53,6 +54,11 @@ const uiReducer = (state = initialState, action) => {
             return {
                 ...state,
                 copyRight: false
+            };
+        case OPEN:
+            return {
+                ...state,
+                open: true
             };
         default: return state;
     }
